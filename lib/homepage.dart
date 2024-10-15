@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'loginpage.dart';
 import 'halamankelompok.dart'; // Import halaman kelompok
 import 'stopwatch.dart';
-
+import 'rekomendasi.dart'; // Import the new recommendations page
 
 class homepage extends StatefulWidget {
   @override
@@ -71,26 +71,30 @@ class HomeMainPage extends StatelessWidget {
                 // Navigasi ke HalamanKelompok saat tombol ditekan
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const HalamanKelompok()),
+                  MaterialPageRoute(
+                      builder: (context) => const HalamanKelompok()),
                 );
               },
               child: const Text('Daftar Anggota'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-  onPressed: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => StopwatchPage()),
-    );
-  },
-  child: const Text('Aplikasi Stopwatch'),
-),
-
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => StopwatchPage()),
+                );
+              },
+              child: const Text('Aplikasi Stopwatch'),
+            ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Tambahkan logika untuk situs rekomendasi di sini
+                // Navigasi ke RekomendasiPage
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => RekomendasiPage()),
+                );
               },
               child: const Text('Situs Rekomendasi Jogging'),
             ),
