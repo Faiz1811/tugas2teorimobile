@@ -7,19 +7,7 @@ class HalamanKelompok extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFF1E3A8A),
-        iconTheme: const IconThemeData(color: Colors.white),
-        title: const Center(
-          child: Text(
-            'Data Kelompok',
-            style: TextStyle(
-              fontSize: 35,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'arial',
-              color: Colors.white,
-            ),
-          ),
-        ),
+        title: const Text('Data Kelompok'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

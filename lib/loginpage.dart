@@ -50,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login Page'),
+        title: const Text('Joggey'),
         centerTitle: true,
       ),
       body: Padding(
@@ -58,8 +58,15 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            // Menambahkan logo/gambar di atas form login
+            Image.asset(
+              '../assets/images/icon.jpg',
+              width: 400, // Sesuaikan ukuran gambar
+              height: 200, // Sesuaikan ukuran gambar
+            ),
+            const SizedBox(height: 20), // Spasi antara gambar dan field
             Container(
-              margin: EdgeInsets.only(top: 20, right: 20, left: 20),
+              margin: const EdgeInsets.only(top: 20, right: 20, left: 20),
               width: 300,
               child: TextField(
                 controller: _emailController,
@@ -67,21 +74,23 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 20, right: 20, left: 20),
+              margin: const EdgeInsets.only(top: 20, right: 20, left: 20),
               width: 300,
               child: TextField(
                 controller: _passwordController,
                 decoration: InputDecoration(
-                    labelText: 'Password',
-                    suffix: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            visible = !visible;
-                          });
-                        },
-                        icon: visible
-                            ? Icon(Icons.visibility_off)
-                            : Icon(Icons.visibility))),
+                  labelText: 'Password',
+                  suffix: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        visible = !visible;
+                      });
+                    },
+                    icon: visible
+                        ? const Icon(Icons.visibility_off)
+                        : const Icon(Icons.visibility),
+                  ),
+                ),
                 obscureText: visible,
               ),
             ),
@@ -93,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        margin: EdgeInsets.only(top: 20, right: 5),
+                        margin: const EdgeInsets.only(top: 20, right: 5),
                         width: 150,
                         child: ElevatedButton(
                           onPressed: _login,
@@ -101,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 20, left: 5),
+                        margin: const EdgeInsets.only(top: 20, left: 5),
                         width: 150,
                         child: ElevatedButton(
                           onPressed: _register,
@@ -116,6 +125,7 @@ class _LoginPageState extends State<LoginPage> {
           ],
         ),
       ),
+      backgroundColor: const Color(0xFFE6F7FF),
     );
   }
 }

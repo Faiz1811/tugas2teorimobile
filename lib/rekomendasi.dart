@@ -1,23 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class RekomendasiPage extends StatelessWidget {
+class RekomendasiPage extends StatefulWidget {
+  @override
+  _RekomendasiPageState createState() => _RekomendasiPageState();
+}
+
+class _RekomendasiPageState extends State<RekomendasiPage> {
   final List<Map<String, String>> joggingPlaces = [
     {
-      'name': 'Taman Kota',
-      'image': 'https://via.placeholder.com/150', // Replace with actual image URL
-      'link': 'https://goo.gl/maps/example1', // Replace with actual Google Maps link
+      'name': 'Maguwo',
+      'image': '../assets/images/maguwo.jpg',
+      'link': 'https://maps.app.goo.gl/iTnao7KwdEDyrBHE6',
     },
     {
-      'name': 'Lapangan Olahraga',
-      'image': 'https://via.placeholder.com/150', // Replace with actual image URL
-      'link': 'https://goo.gl/maps/example2', // Replace with actual Google Maps link
+      'name': 'Tambak Bayan',
+      'image': '../assets/images/tambakboyo.jpg',
+      'link': 'https://maps.app.goo.gl/FdeeLa8cHNwZTskYA',
     },
     {
-      'name': 'Pantai Jogging Track',
-      'image': 'https://via.placeholder.com/150', // Replace with actual image URL
-      'link': 'https://goo.gl/maps/example3', // Replace with actual Google Maps link
+      'name': 'Taman UGM',
+      'image': '../assets/images/tamanugm.jpg',
+      'link': 'https://maps.app.goo.gl/9YGwnmkLH4c4dqJa6',
     },
   ];
+
+  Set<int> bookmarkedPlaces = {};
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +37,14 @@ class RekomendasiPage extends StatelessWidget {
         itemCount: joggingPlaces.length,
         itemBuilder: (context, index) {
           final place = joggingPlaces[index];
+          final isBookmarked = bookmarkedPlaces.contains(index);
+
           return Card(
             margin: const EdgeInsets.all(10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.network(
+                Image.asset(
                   place['image']!,
                   fit: BoxFit.cover,
                   height: 150,
@@ -52,12 +62,31 @@ class RekomendasiPage extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Open Google Maps link
-                      launchURL(place['link']!);
-                    },
-                    child: const Text('Buka di Google Maps'),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          launchURL(place['link']!);
+                        },
+                        child: const Text('Buka di Google Maps'),
+                      ),
+                      IconButton(
+                        icon: Icon(
+                          isBookmarked ? Icons.bookmark : Icons.bookmark_border,
+                          color: isBookmarked ? Colors.blue : Colors.grey,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            if (isBookmarked) {
+                              bookmarkedPlaces.remove(index);
+                            } else {
+                              bookmarkedPlaces.add(index);
+                            }
+                          });
+                        },
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -66,12 +95,15 @@ class RekomendasiPage extends StatelessWidget {
           );
         },
       ),
+      backgroundColor: const Color(0xFFE6F7FF),
     );
   }
 
   void launchURL(String url) async {
-    // You may want to use the url_launcher package for this
-    // To use it, add it to your pubspec.yaml dependencies
-    // Example: url_launcher: ^6.0.20
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

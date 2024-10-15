@@ -127,7 +127,7 @@ class _StopwatchPageState extends State<StopwatchPage> {
                     Flexible(
                       child: ElevatedButton(
                         onPressed: _finishStopwatch,
-                        child: Text('Selesai'),
+                        child: Text('End'),
                       ),
                     ),
                 ],
@@ -160,6 +160,7 @@ class _StopwatchPageState extends State<StopwatchPage> {
           ),
         ),
       ),
+      backgroundColor: const Color(0xFFE6F7FF),
     );
   }
 }
