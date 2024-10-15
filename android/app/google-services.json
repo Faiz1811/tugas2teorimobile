@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "90736298016",
+    "firebase_url": "https://nekostream-1945.firebaseio.com",
+    "project_id": "nekostream-1945",
+    "storage_bucket": "nekostream-1945.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90736298016:android:0d5debc4ef670c53ab1445",
+        "android_client_info": {
+          "package_name": "whyme126.me"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "90736298016-8acbk5re3e62ncahnd44sng6d9dj7fg8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2mqEHZ7VvNM0DksK9pCkhklHJeEAiBwI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "90736298016-8acbk5re3e62ncahnd44sng6d9dj7fg8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
