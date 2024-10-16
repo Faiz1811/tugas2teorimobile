@@ -5,6 +5,8 @@ import 'stopwatch.dart';
 import 'rekomendasi.dart'; // Import the new recommendations page
 
 class homepage extends StatefulWidget {
+  const homepage({super.key});
+
   @override
   State<homepage> createState() => _homepageState();
 }
@@ -12,7 +14,7 @@ class homepage extends StatefulWidget {
 class _homepageState extends State<homepage> {
   int _selectedIndex = 0;
 
-  static List<Widget> _widgetOptions = <Widget>[
+  static final List<Widget> _widgetOptions = <Widget>[
     HomeMainPage(),
     HelpMenuPage(),
   ];
@@ -66,6 +68,8 @@ class _homepageState extends State<homepage> {
 
 // Halaman Utama
 class HomeMainPage extends StatelessWidget {
+  const HomeMainPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -76,7 +80,7 @@ class HomeMainPage extends StatelessWidget {
           children: [
             const SizedBox(height: 20),
             // Gunakan Container dengan tinggi terbatas untuk menjaga tata letak
-            Container(
+            SizedBox(
               height: MediaQuery.of(context).size.height * 0.4, // Menyesuaikan tinggi
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center, // Mengurangi jarak
@@ -119,7 +123,7 @@ class HomeMainPage extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           text,
-          style: TextStyle(fontSize: 20), // Ubah ukuran font di sini
+          style: const TextStyle(fontSize: 20), // Ubah ukuran font di sini
         ),
       ),
     );
@@ -128,6 +132,8 @@ class HomeMainPage extends StatelessWidget {
 
 // Halaman Menu Bantuan
 class HelpMenuPage extends StatelessWidget {
+  const HelpMenuPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -155,7 +161,7 @@ class HelpMenuPage extends StatelessWidget {
                 '- Fitur data kelompok: Akses menu data kelompok setelah login untuk melihat dan mengelola informasi kelompok.\n'
                 '- Fitur stopwatch: Temukan dan aktifkan fitur stopwatch dari menu utama untuk mencatat waktu saat berolahraga.\n'
                 '- Rekomendasi tempat jogging: Buka menu rekomendasi tempat jogging untuk melihat lokasi jogging yang disarankan berdasarkan preferensi Anda.\n',
-                style: TextStyle(fontSize: 15),
+                style: TextStyle(fontSize: 19),
               ),
             ),
             const SizedBox(height: 20),

@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class StopwatchPage extends StatefulWidget {
+  const StopwatchPage({super.key});
+
   @override
   _StopwatchPageState createState() => _StopwatchPageState();
 }
@@ -9,7 +11,7 @@ class StopwatchPage extends StatefulWidget {
 class _StopwatchPageState extends State<StopwatchPage> {
   late Stopwatch _stopwatch;
   late Timer _timer;
-  List<String> _lapTimes = [];
+  final List<String> _lapTimes = [];
   bool _isStopwatchFinished = false; // Status apakah stopwatch sudah selesai
 
   @override
@@ -19,7 +21,7 @@ class _StopwatchPageState extends State<StopwatchPage> {
   }
 
   void _startTimer() {
-    _timer = Timer.periodic(Duration(milliseconds: 30), (timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 30), (timer) {
       setState(() {});
     });
   }
@@ -69,7 +71,7 @@ class _StopwatchPageState extends State<StopwatchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Stopwatch'),
+        title: const Text('Stopwatch'),
       ),
       body: Center(
         child: Padding(
@@ -80,9 +82,9 @@ class _StopwatchPageState extends State<StopwatchPage> {
               // Stopwatch timer display in the center
               Text(
                 _formatTime(_stopwatch.elapsedMilliseconds),
-                style: TextStyle(fontSize: 48.0),
+                style: const TextStyle(fontSize: 48.0),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Tombol untuk mengontrol stopwatch (Play, Pause, Lap Time)
               Row(
@@ -96,10 +98,10 @@ class _StopwatchPageState extends State<StopwatchPage> {
                           _startTimer();
                         }
                       },
-                      child: Text('Play'),
+                      child: const Text('Play'),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Flexible(
                     child: ElevatedButton(
                       onPressed: () {
@@ -108,10 +110,10 @@ class _StopwatchPageState extends State<StopwatchPage> {
                           _timer.cancel();
                         }
                       },
-                      child: Text('Pause'),
+                      child: const Text('Pause'),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Flexible(
                     child: ElevatedButton(
                       onPressed: () {
@@ -119,25 +121,25 @@ class _StopwatchPageState extends State<StopwatchPage> {
                           _recordLapTime();
                         }
                       },
-                      child: Text('Lap Time'),
+                      child: const Text('Lap Time'),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   if (!_isStopwatchFinished) // Tombol "Selesai" hanya muncul jika stopwatch belum selesai
                     Flexible(
                       child: ElevatedButton(
                         onPressed: _finishStopwatch,
-                        child: Text('End'),
+                        child: const Text('End'),
                       ),
                     ),
                 ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Expanded widget for the lap times list (scrollable if needed)
               Expanded(
                 child: _lapTimes.isEmpty
-                    ? Center(child: Text('No laps yet'))
+                    ? const Center(child: Text('No laps yet'))
                     : ListView.builder(
                         itemCount: _lapTimes.length,
                         itemBuilder: (context, index) {
@@ -148,13 +150,13 @@ class _StopwatchPageState extends State<StopwatchPage> {
                         },
                       ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Tombol Reset, hanya muncul saat stopwatch sudah selesai
               if (_isStopwatchFinished)
                 ElevatedButton(
                   onPressed: _resetStopwatch,
-                  child: Text('Reset'),
+                  child: const Text('Reset'),
                 ),
             ],
           ),

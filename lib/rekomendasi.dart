@@ -1,7 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Rekomendasi Jogging',
+      home: RekomendasiPage(),
+    );
+  }
+}
+
 class RekomendasiPage extends StatefulWidget {
+  const RekomendasiPage({super.key});
+
   @override
   _RekomendasiPageState createState() => _RekomendasiPageState();
 }
@@ -10,17 +32,17 @@ class _RekomendasiPageState extends State<RekomendasiPage> {
   final List<Map<String, String>> joggingPlaces = [
     {
       'name': 'Maguwo',
-      'image': '../assets/images/maguwo.jpg',
+      'image': 'assets/images/maguwo.jpg',
       'link': 'https://maps.app.goo.gl/iTnao7KwdEDyrBHE6',
     },
     {
       'name': 'Tambak Bayan',
-      'image': '../assets/images/tambakboyo.jpg',
+      'image': 'assets/images/tambakboyo.jpg',
       'link': 'https://maps.app.goo.gl/FdeeLa8cHNwZTskYA',
     },
     {
       'name': 'Taman UGM',
-      'image': '../assets/images/tamanugm.jpg',
+      'image': 'assets/images/tamanugm.jpg',
       'link': 'https://maps.app.goo.gl/9YGwnmkLH4c4dqJa6',
     },
   ];
@@ -66,9 +88,7 @@ class _RekomendasiPageState extends State<RekomendasiPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ElevatedButton(
-                        onPressed: () {
-                          launchURL(place['link']!);
-                        },
+                        onPressed: () => launchURL(place['link']!),
                         child: const Text('Buka di Google Maps'),
                       ),
                       IconButton(
